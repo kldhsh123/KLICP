@@ -28,7 +28,7 @@
 
 6. 进入目录 `./site/admin/ver`，修改 `approve.php` 和 `delete.php` 的SMTP部分。
 
-7. 修改`./text.php文件的站点地址`
+7. 修改`./text.php`文件的站点地址
 
 8. 修改站点信息以实现自定义。
 
