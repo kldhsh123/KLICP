@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开朗ICP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .demo-link {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .demo-image {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>请将<code>site</code>目录设置成运行目录</h1>
+  <h2>开朗ICP</h2>
+  <p>开朗ICP是一款基于PHP构建的虚拟ICP备案查询系统。</p>
+  
+  <p>本项目由ChatGPT进行润色。</p>
+  
+  <a class="demo-link" href="https://icp.kldhsh.top/">演示站点</a>
+  
+  <div class="demo-image">
+    <img src="https://krseoul.imgtbl.com/i/2024/07/25/66a1910927144.png" alt="演示图片">
+  </div>
+  
+  <h2>功能介绍</h2>
+  <ul>
+    <li>查询ICP备案信息</li>
+    <li>后台管理和审核</li>
+    <li>数据提交基本安全</li>
+    <li>验证码部分（未实现）</li>
+    <li>后台密码（未实现）</li>
+  </ul>
+  
+  <h2>使用方法</h2>
+  <ol>
+    <li>将本仓库克隆到您的服务器上。</li>
+    <li>在服务器上安装PHP环境。</li>
+    <li>在服务器上安装MySQL数据库，并创建一个数据库。</li>
+    <li>在数据库中导入项目根目录提供的数据表。</li>
+    <li>编辑根目录的 <code>db_connection.php</code> 文件，将数据库连接信息修改为您自己的数据库信息。</li>
+    <li>进入目录 <code>./site/admin/ver</code>，修改 <code>approve.php</code> 和 <code>delete.php</code> 的SMTP部分。</li>
+    <li>修改 <code>./text.php</code> 文件的站点地址。</li>
+    <li>修改站点信息以实现自定义。</li>
+    <li>设置运行目录 <code>site</code>。</li>
+    <li>在浏览器中访问您的站点，即可使用开朗ICP备案查询。</li>
+  </ol>
+  
+  <p>后台地址为 <code>./admin</code>。</p>
+  
+  <h2>注意事项</h2>
+  <ol>
+    <li>本项目仅供学习和研究使用，请勿用于非法用途。</li>
+    <li>项目使用Apache 2.0开源协议，请在您的二次开发项目中加上本仓库的地址并标明开发者。</li>
+    <li>后台加密未实现，您可能需要采用类似"宝塔访问限制"的功能来保护后台访问安全。</li>
+  </ol>
+</body>
+</html>
