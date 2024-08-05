@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 设置 SMTP 配置
     $mail = new PHPMailer(true);
+    $mail->CharSet = 'UTF-8';
     $mail->isSMTP();
     $mail->Host = 'text'; // SMTP 服务器地址
     $mail->SMTPAuth = true; // 启用 SMTP 认证
@@ -42,8 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($result && mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
 
-                // 确保从 PendingSites 表中正确获取 email
+                // 确保从 PendingSites 表中正确获取 email 和 ip_address
                 $email = $row['email'];
+                $ipAddress = mysqli_real_escape_string($conn, $row['ip_address']); // 新增字段
 
                 // 将行插入到 ApprovedSites 表中
                 $siteName = mysqli_real_escape_string($conn, $row['siteName']);
@@ -51,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $description = mysqli_real_escape_string($conn, $row['description']);
                 $owner = mysqli_real_escape_string($conn, $row['owner']);
 
-                $query = "INSERT INTO ApprovedSites (number, siteName, address, description, owner, email, verification_date) VALUES ('$number', '$siteName', '$address', '$description', '$owner', '$email', '$currentDate')";
+                $query = "INSERT INTO ApprovedSites (number, siteName, address, description, owner, email, ip_address, verification_date) VALUES ('$number', '$siteName', '$address', '$description', '$owner', '$email', '$ipAddress', '$currentDate')";
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {
@@ -60,13 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $result = mysqli_query($conn, $query);
 
                     // 设置发件人信息
-                    $mail->setFrom('smtp@kldhsh.top', '开朗虚拟ICP站点');
+                    $mail->setFrom('text', '开朗虚拟ICP站点');
                     // 设置收件人信息
                     $mail->addAddress($email);
                     // 设置邮件内容
                     $mail->isHTML(true);
                     $mail->Subject = '您的ICP请求已处理';
-                    $mail->Body    = "尊敬的用户，您提交的站点申请已经通过审批。您的icp备案号已被激活。<br>感谢您的使用。<br>本邮件由自动系统发出，请不要直接回复。";
+                    $mail->Body    = "尊敬的用户，您提交的站点申请已经通过审批。您的ICP备案号已被激活。<br>感谢您的使用。<br>本邮件由自动系统发出，请不要直接回复。";
                     
                     // 发送邮件
                     $mail->send();
